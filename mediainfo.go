@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log/slog"
-	"os"
 	"os/exec"
 )
 
@@ -192,9 +191,8 @@ type PrettyInfo struct {
 func GetStandMediaInfo(fp string) *PrettyInfo {
 	cmd := exec.Command("mediainfo", "--Output=JSON", "--Full", fp)
 	output, _ := cmd.CombinedOutput()
-
-	file, _ := os.OpenFile("exam.json", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
-	file.Write(output)
+	//file, _ := os.OpenFile("exam.json", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	//file.Write(output)
 	mi := new(Stand)
 	json.Unmarshal(output, &mi)
 	var (
