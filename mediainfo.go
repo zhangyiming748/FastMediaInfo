@@ -34,6 +34,7 @@ type Stand struct {
 			FileNameExtension              string `json:"FileNameExtension,omitempty"`
 			FileName                       string `json:"FileName,omitempty"`
 			FileExtension                  string `json:"FileExtension,omitempty"`
+			FormatCompression              string `json:"Format_Compression,omitempty"`
 			Format                         string `json:"Format"`
 			FormatString                   string `json:"Format_String"`
 			FormatExtensions               string `json:"Format_Extensions,omitempty"`
