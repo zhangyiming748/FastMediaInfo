@@ -1,7 +1,7 @@
 package FastMediaInfo
 
 /*
-codec 可选 h265 vp9 av1
+codec 可选 h265 vp9 av1 avif
 */
 func GetCRF(codec string, width, height int) (crf string) {
 	switch codec {
@@ -28,6 +28,18 @@ func GetCRF(codec string, width, height int) (crf string) {
 			crf = "24"
 		} else if width >= 480 || height >= 480 {
 			crf = "24"
+		}
+	case "avif":
+		if width >= 2160 || height >= 2160 {
+			crf = "20"
+		} else if width >= 1440 || height >= 1440 {
+			crf = "25"
+		} else if width >= 1080 || height >= 1080 {
+			crf = "30"
+		} else if width >= 720 || height >= 720 {
+			crf = "40"
+		} else if width >= 480 || height >= 480 {
+			crf = "45"
 		}
 	default:
 		panic("不是合法的编码")
