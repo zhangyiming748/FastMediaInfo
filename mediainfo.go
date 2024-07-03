@@ -2,8 +2,7 @@ package FastMediaInfo
 
 import (
 	"encoding/json"
-	"fmt"
-	"log/slog"
+	"log"
 	"os/exec"
 )
 
@@ -185,6 +184,7 @@ type Stand struct {
 type PrettyInfo struct {
 	Video   Video
 	Audio   Audio
+	Image   Image
 	General General
 }
 
@@ -199,27 +199,34 @@ func GetStandMediaInfo(fp string) *PrettyInfo {
 		gg General
 		vv Video
 		aa Audio
+		ii Image
 	)
 	for _, v := range mi.Media.Track {
 		if v.Type == "General" {
 			gb, _ := json.Marshal(v)
-			slog.Debug(fmt.Sprintf("general序列化: %s\n", string(gb)))
+			log.Printf("general序列化: %s\n", string(gb))
 			json.Unmarshal(gb, &gg)
 		}
 		if v.Type == "Video" {
 			vb, _ := json.Marshal(v)
-			slog.Debug(fmt.Sprintf("video序列化: %s\n", string(vb)))
+			log.Printf("video序列化: %s\n", string(vb))
 			json.Unmarshal(vb, &vv)
 		}
 		if v.Type == "Audio" {
 			ab, _ := json.Marshal(v)
-			slog.Debug(fmt.Sprintf("audio序列化: %s\n", string(ab)))
+			log.Printf("audio序列化: %s\n", string(ab))
 			json.Unmarshal(ab, &aa)
+		}
+		if v.Type == "Image" {
+			ib, _ := json.Marshal(v)
+			log.Printf("video序列化: %s\n", string(ib))
+			json.Unmarshal(ib, &ii)
 		}
 	}
 	var pi PrettyInfo
 	pi.General = gg
 	pi.Video = vv
 	pi.Audio = aa
+	pi.Image = ii
 	return &pi
 }
