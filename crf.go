@@ -22,24 +22,28 @@ func GetCRF(codec string, width, height int) (crf string) {
 			crf = "33"
 		}
 	case "av1":
-		if width >= 1080 || height >= 1080 {
-			crf = "24"
+		if width >= 2160 || height >= 2160 {
+			crf = "30"
+		} else if width >= 1440 || height >= 1440 {
+			crf = "31"
+		} else if width >= 1080 || height >= 1080 {
+			crf = "32"
 		} else if width >= 720 || height >= 720 {
-			crf = "24"
+			crf = "33"
 		} else if width >= 480 || height >= 480 {
-			crf = "24"
+			crf = "34"
 		}
 	case "avif":
 		if width >= 2160 || height >= 2160 {
-			crf = "20"
-		} else if width >= 1440 || height >= 1440 {
-			crf = "25"
-		} else if width >= 1080 || height >= 1080 {
 			crf = "30"
+		} else if width >= 1440 || height >= 1440 {
+			crf = "31"
+		} else if width >= 1080 || height >= 1080 {
+			crf = "32"
 		} else if width >= 720 || height >= 720 {
-			crf = "40"
+			crf = "33"
 		} else if width >= 480 || height >= 480 {
-			crf = "45"
+			crf = "34"
 		}
 	default:
 		panic("不是合法的编码")
