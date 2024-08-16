@@ -2,7 +2,6 @@ package FastMediaInfo
 
 import (
 	"encoding/json"
-	"fmt"
 	"os/exec"
 )
 
@@ -205,22 +204,22 @@ func GetStandMediaInfo(fp string) *PrettyInfo {
 	for _, v := range mi.Media.Track {
 		if v.Type == "General" {
 			gb, _ := json.Marshal(v)
-			fmt.Printf("general序列化: %s\n", string(gb))
+			//fmt.Printf("general序列化: %s\n", string(gb))
 			json.Unmarshal(gb, &gg)
 		}
 		if v.Type == "Video" {
 			vb, _ := json.Marshal(v)
-			fmt.Printf("video序列化: %s\n", string(vb))
+			//fmt.Printf("video序列化: %s\n", string(vb))
 			json.Unmarshal(vb, &vv)
 		}
 		if v.Type == "Audio" {
 			ab, _ := json.Marshal(v)
-			fmt.Printf("audio序列化: %s\n", string(ab))
+			//fmt.Printf("audio序列化: %s\n", string(ab))
 			json.Unmarshal(ab, &aa)
 		}
 		if v.Type == "Image" {
 			ib, _ := json.Marshal(v)
-			fmt.Printf("video序列化: %s\n", string(ib))
+			//fmt.Printf("video序列化: %s\n", string(ib))
 			json.Unmarshal(ib, &ii)
 		}
 	}
